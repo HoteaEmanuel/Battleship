@@ -1,0 +1,184 @@
+@import 'tailwindcss';
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap');
+
+@theme {
+  --font-orbitron: 'Orbitron', sans-serif;
+  --font-mono-tech: 'Share Tech Mono', monospace;
+  --color-mil-bg: #0d1a0f;
+}
+h1 {
+  -webkit-text-stroke: 1px #4a5c3a;
+}
+.game-background {
+  background-color: #0d1a0f;
+
+  /* grid militar */
+  background-image:
+    linear-gradient(rgba(40, 80, 40, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(40, 80, 40, 0.07) 1px, transparent 1px),
+    linear-gradient(rgba(40, 80, 40, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(40, 80, 40, 0.03) 1px, transparent 1px);
+  background-size:
+    80px 80px,
+    80px 80px,
+    20px 20px,
+    20px 20px;
+}
+.btn {
+  @apply cursor-pointer font-orbitron font-bold  tracking-widest uppercase  bg-[#6b7f56] text-[#0a0f07] px-7 py-3 border border-[#6b7f56]  hover:bg-[#7d9266] hover:scale-105 active:bg-[#4a5c3a] transition-colors;
+}
+
+.heading-text {
+  @apply font-orbitron text-7xl font-bold uppercase  tracking-widest;
+}
+
+.text {
+  @apply font-orbitron font-bold uppercase  tracking-widest text-gray-300;
+}
+
+.image {
+  @apply object-cover h-72 w-96;
+}
+
+.small-image {
+  @apply object-cover h-15 w-15 rounded-full;
+}
+
+.cell {
+  @apply border border-gray-500 hover:scale-105 bg-white;
+}
+
+.cell {
+  position: relative;
+  cursor: crosshair;
+  transition:
+    background 0.15s,
+    border-color 0.15s;
+}
+
+/* cele 4 colțuri de targeting */
+.cell::before,
+.cell::after,
+.cell .corner-bl,
+.cell .corner-br {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-color: #c84040;
+  border-style: solid;
+  opacity: 0;
+  transition:
+    opacity 0.15s,
+    transform 0.15s;
+}
+.cell::before {
+  top: 3px;
+  left: 3px;
+  border-width: 1.5px 0 0 1.5px;
+  transform: translate(4px, 4px);
+}
+.cell::after {
+  top: 3px;
+  right: 3px;
+  border-width: 1.5px 1.5px 0 0;
+  transform: translate(-4px, 4px);
+}
+.cell .corner-bl {
+  bottom: 3px;
+  left: 3px;
+  border-width: 0 0 1.5px 1.5px;
+  transform: translate(4px, -4px);
+}
+.cell .corner-br {
+  bottom: 3px;
+  right: 3px;
+  border-width: 0 1.5px 1.5px 0;
+  transform: translate(-4px, -4px);
+}
+
+.cell:hover::before,
+.cell:hover::after,
+.cell:hover .corner-bl,
+.cell:hover .corner-br {
+  opacity: 1;
+  transform: translate(0, 0); /* slide in spre colț */
+}
+
+.cell .ch-h {
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background: rgba(200, 64, 64, 0.3);
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+.cell .ch-v {
+  position: absolute;
+  width: 1px;
+  height: 100%;
+  background: rgba(200, 64, 64, 0.3);
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+.cell .dot {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #c84040;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+.cell:hover .ch-h,
+.cell:hover .ch-v,
+.cell:hover .dot {
+  opacity: 1;
+}
+
+
+.cell-full {
+  @apply border border-gray-500 hover:scale-105 bg-gray-800;
+}
+
+.cell-miss {
+  @apply border border-gray-500 hover:scale-105 bg-blue-950;
+}
+
+.blocked {
+  @apply pointer-events-none cursor-not-allowed;
+}
+.iron-heading {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color: #b0bfa8;
+  text-shadow:
+    0 1px 0 #6a7a60,
+    0 2px 0 #4a5c3a,
+    0 3px 0 #2d3a22,
+    0 4px 8px rgba(0, 0, 0, 0.8);
+  -webkit-text-stroke: 1px #4a5c3a;
+}
+.modal {
+  background-color: #2d3a22;
+  @apply w-full h-[90%] flex flex-col gap-10 items-center justify-center rounded-4xl;
+}
+.text-important {
+  @apply font-orbitron font-bold uppercase  tracking-widest text-gray-300 text-5xl;
+}
+.battleship-image-1 {
+  @apply transition-transform duration-500 ease-linear hover:translate-y-1 hover:-translate-x-1;
+}
+
+.block {
+  @apply h-10 w-10 bg-gray-800 border;
+}
+
+.container {
+  @apply w-full h-full flex flex-col items-center shadow-blue-600;
+}
+.battleship-image-2 {
+  @apply transition-transform duration-500 ease-linear hover:translate-y-1 hover:translate-x-1;
+}
